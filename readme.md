@@ -1,6 +1,6 @@
 # 步骤
 
-视频教程: TBD
+视频教程: https://www.bilibili.com/video/BV1i94y147Zg/?vd_source=de81995ce6bebaf25b1f4c54e95a1f2f
 
 1. 访问网页版pdd
 2. 登录
