@@ -96,20 +96,6 @@ out="" // 删除用变量
 
 for (i = 0; i < this.itemsStore.length; i++) {
 
-  // 整理创建时间格式
-	create_at = this.itemsStore[i].groupOrder.createAt
-	create_at = new Date(create_at*1000)
-	create_at = [
-      create_at.getFullYear(),
-      (create_at.getMonth() + 1).toString().padStart(2, '0'),
-      create_at.getDate().toString().padStart(2, '0'),
-    ].join('-') +
-    ' ' +
-    [
-      create_at.getHours().toString().padStart(2, '0'),
-      create_at.getMinutes().toString().padStart(2, '0'),
-      create_at.getSeconds().toString().padStart(2, '0'),
-    ].join(':')
 
 	order_sn=this.itemsStore[i].orderSn // 订单ID
 	buyUrl="https://mobile.pinduoduo.com/goods.html?goods_id="
@@ -120,6 +106,11 @@ for (i = 0; i < this.itemsStore.length; i++) {
 		goodsPrice=this.itemsStore[i].orderGoods[0].goodsPrice
 		goodsQty=this.itemsStore[i].orderGoods[0].goodsNumber
 		orderAmount = this.itemsStore[i].orderAmount
+		
+		// 整理创建时间格式
+		create_at = this.itemsStore[i].orderTime
+
+	
 	}else if(this.itemsStore[i].type==2){ // 多多买菜
 		name=this.itemsStore[i].orders[0].orderGoods[0].goodsName
 		spec=this.itemsStore[i].orders[0].orderGoods[0].spec
@@ -127,10 +118,27 @@ for (i = 0; i < this.itemsStore.length; i++) {
 		goodsPrice=this.itemsStore[i].orders[0].orderGoods[0].goodsPrice/100
 		goodsQty=this.itemsStore[i].orders[0].orderGoods[0].goodsNumber
 		orderAmount = this.itemsStore[i].displayAmount/100
+		
+		// 整理创建时间格式
+		create_at = parseInt(this.itemsStore[i].sortId.slice(0, 10))
 	}else{
 		console.log("未知类型: "+i)
 	}
 	
+	create_at = new Date(create_at*1000)
+	create_at = [
+	  create_at.getFullYear(),
+	  (create_at.getMonth() + 1).toString().padStart(2, '0'),
+	  create_at.getDate().toString().padStart(2, '0'),
+	].join('-') +
+	' ' +
+	[
+	  create_at.getHours().toString().padStart(2, '0'),
+	  create_at.getMinutes().toString().padStart(2, '0'),
+	  create_at.getSeconds().toString().padStart(2, '0'),
+	].join(':')
+
+		
 	orderStatusPrompt = this.itemsStore[i].orderStatusPrompt
 	mall_name = this.itemsStore[i].mall.mallName
 	// 调试用
@@ -157,4 +165,5 @@ for (i = 0; i < this.itemsStore.length; i++) {
 
 // 输出到控制台
 console.log(out)
+
 ```
