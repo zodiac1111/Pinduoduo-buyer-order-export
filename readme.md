@@ -94,7 +94,7 @@ t.prototype.checkListViewLoadedAll = function() {
 
 out="" // 删除用变量
 
-for (i = 0; i < this.itemsStore.length; i++) {
+for (let i = 0; i < this.itemsStore.length; i++) {
 
 
 	order_sn=this.itemsStore[i].orderSn // 订单ID
